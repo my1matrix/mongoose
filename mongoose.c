@@ -4140,6 +4140,9 @@ static void read_websocket(struct mg_connection *conn) {
       conn->data_len += n;
     }
   }
+  if (conn->ctx->callbacks.websocket_done != NULL ) {
+    conn->ctx->callbacks.websocket_done(conn);
+  }
 }
 
 int mg_websocket_write(struct mg_connection* conn, int opcode,

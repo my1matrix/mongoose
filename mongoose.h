@@ -95,6 +95,9 @@ struct mg_callbacks {
   int  (*websocket_data)(struct mg_connection *, int bits,
                          char *data, size_t data_len);
 
+  // called when websocket_read infinite loop ends
+  void (*websocket_done)(struct mg_connection *);
+
   // Called when mongoose tries to open a file. Used to intercept file open
   // calls, and serve file data from memory instead.
   // Parameters:
